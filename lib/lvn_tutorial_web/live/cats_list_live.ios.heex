@@ -1,0 +1,8 @@
+<.list platform={@platform}>
+  <%= for cat <- @cats do %>
+    <.hstack platform={@platform} id={cat} >
+      <.asyncimage platform={@platform} src={"/images/cats/#{cat}.jpg"} frame-width="100" frame-height="100" />
+      <.text platform={@platform}><%= cat %></.text>
+    </.hstack>
+  <% end %>
+</.list>

@@ -1,4 +1,4 @@
-<.vstack platform={@platform} nav-title={@name}>
+<.vstack platform={@platform} nav-title={@name} nav-favorite={to_string(@favorite)}>
   <.asyncimage platform={@platform} src={"/images/cats/#{@name}.jpg"} frame-width="300" frame-height="300" />
   <.cat_rating platform={@platform} score={@score} />
 </.vstack>

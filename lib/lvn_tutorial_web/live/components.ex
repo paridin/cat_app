@@ -198,7 +198,7 @@ defmodule CatAppWeb.Components do
     """
   end
 
-  defp get_valid_attrs(assigns) do
+  def get_valid_attrs(assigns) do
     assigns
     |> assigns_to_attributes()
     |> Keyword.delete(:platform)

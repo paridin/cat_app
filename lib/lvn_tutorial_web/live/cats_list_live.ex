@@ -30,12 +30,8 @@ defmodule CatAppWeb.CatsListLive do
   ]
 
   def mount(_params, _session, socket) do
-    platform =
-      case get_connect_params(socket) do
-        %{"_platform" => "ios"} -> :ios
-        _ -> :web
-      end
-    {:ok, assign(socket, platform: platform, cats_and_favorites: get_cats_and_favorites())}
+    IO.inspect(socket.assigns)
+    {:ok, assign(socket, cats_and_favorites: get_cats_and_favorites())}
   end
 
   def get_cats_and_favorites do

@@ -8,7 +8,6 @@ defmodule CatAppWeb.Live.Hooks.DicoverPlatform do
         %{"_platform" => "ios"} -> :ios
         _ -> :web
       end
-      |>  IO.inspect(label: :platform)
     {:cont, assign(socket, platform: platform)}
   end
 end

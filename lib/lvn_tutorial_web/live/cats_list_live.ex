@@ -30,7 +30,6 @@ defmodule CatAppWeb.CatsListLive do
   ]
 
   def mount(_params, _session, socket) do
-    IO.inspect(socket.assigns)
     {:ok, assign(socket, cats_and_favorites: get_cats_and_favorites())}
   end
 

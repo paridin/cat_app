@@ -18,9 +18,14 @@ defmodule CatAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
 
-    live "/cats", CatsListLive
-
+  live_session :platform, on_mount: CatAppWeb.Live.Hooks.DicoverPlatform do
+    scope "/", CatAppWeb do
+      pipe_through :browser
+      live "/cats", CatsListLive
+      live "/cats/:name", CatLive
+    end
   end
 
   # Other scopes may use custom stacks.

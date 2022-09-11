@@ -1,6 +1,7 @@
 defmodule CatAppWeb.CatsListLive do
   use CatAppWeb, :live_view
   require EEx
+  alias CatApp.FavoritesStore
 
   EEx.function_from_file(
     :def,
@@ -34,6 +35,23 @@ defmodule CatAppWeb.CatsListLive do
         %{"_platform" => "ios"} -> :ios
         _ -> :web
       end
-    {:ok, assign(socket, platform: platform, cats: @cats)}
+    {:ok, assign(socket, platform: platform, cats_and_favorites: get_cats_and_favorites())}
+  end
+
+  def get_cats_and_favorites do
+    favorites = FavoritesStore.get_favorites()
+
+    {favorites, non_favorites} =
+      @cats
+      |> Enum.map(fn name -> {name, Enum.member?(favorites, name)} end)
+      |> Enum.split_with(fn {_, favorite} -> favorite end)
+
+    favorites ++ non_favorites
+  end
+
+  def handle_event("toggle-favorite", %{"name" => name}, socket) do
+    FavoritesStore.toggle_favorite(name)
+    new = get_cats_and_favorites()
+    {:noreply, assign(socket, cats_and_favorites: new)}
   end
 end

@@ -13,9 +13,10 @@ defmodule CatApp.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: CatApp.PubSub},
       # Start the Endpoint (http/https)
-      CatAppWeb.Endpoint
+      CatAppWeb.Endpoint,
       # Start a worker by calling: CatApp.Worker.start_link(arg)
       # {CatApp.Worker, arg}
+      CatApp.FavoritesStore
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
